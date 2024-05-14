@@ -13,10 +13,7 @@ let overlay = document.getElementById(`overlay`);
 export let countID = 1;
 
 // inputs
-let name = document.getElementById(`name`);
-let email = document.getElementById(`email`);
-let telNumber = document.getElementById(`tel-number`);
-let userImg = document.getElementById(`user-img`);
+let inputs = document.querySelectorAll(`input`);
 
 
 // functions
@@ -36,9 +33,11 @@ addUserBtn.addEventListener(`click`, () => {
     removeHiddenClass();
 });
 
+
 overlay.addEventListener(`click`, function () {
     addHiddenClass()
 })
+
 
 btnSave.addEventListener(`click`, function (e) {
     e.preventDefault();
@@ -47,4 +46,31 @@ btnSave.addEventListener(`click`, function (e) {
 
     addHiddenClass();
     form.reset();
+});
+
+
+btnReset.addEventListener(`click`, function (e) {
+    e.preventDefault();
+    form.reset();
 })
+
+
+let countFocus;
+let currentInput;
+
+inputs.forEach((input) => {
+    countFocus = 1;
+    input.addEventListener(`focus`, () => {
+        if (countFocus > 1) {
+            currentInput.parentNode.parentNode.firstElementChild.style.color = ``;
+            currentInput.parentNode.firstElementChild.style.color = ``
+            currentInput.parentNode.style.borderBottomColor = ``;
+        }
+
+        currentInput = input;
+        currentInput.parentNode.parentNode.firstElementChild.style.color = `#3336e0`;
+        currentInput.parentNode.firstElementChild.style.color = `#3336e0`
+        currentInput.parentNode.style.borderBottomColor = `#3336e0`;
+        countFocus++;
+    })
+});
