@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;800;900&display=swap);
 
 body {
-  font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 :root {
@@ -13,4 +13,26 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+form {
+    position: fixed;
+    top: -40px;
+    width: 100%;
+    background-color: #f4f4f4;
+    z-index: 100;
+
+    input {
+        background-color: transparent;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }

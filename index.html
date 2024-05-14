@@ -49,7 +49,7 @@
                 <div class="flex gap-6 items-center mb-10">
                     <i class="fa-regular fa-2x fa-envelope"></i>
                     <div class="user-name w-full flex column flex-col gap-1 border-b-2">
-                        <label class="font-semibold text-base" for="name">User Email</label>
+                        <label class="font-semibold text-base" for="email">User Email</label>
                         <input class="h-8 focus:outline-none font-semibold" id="email" type="email">
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="flex gap-6 items-center mb-10">
                     <i class="fa-solid fa-2x fa-phone"></i>
                     <div class="user-name w-full flex column flex-col gap-1 border-b-2">
-                        <label class="font-semibold text-base" for="name">User Phone Number</label>
+                        <label class="font-semibold text-base" for="tel-number">User Phone Number</label>
                         <input class="h-8 focus:outline-none font-semibold" id="tel-number" type="number">
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                 <div class="flex gap-6 items-center mb-10">
                     <i class="fa-solid fa-2x fa-image-portrait"></i>
                     <div class="user-name w-full flex column flex-col gap-1 border-b-2">
-                        <label class="font-semibold text-base" for="name">User Image url</label>
+                        <label class="font-semibold text-base" for="user-img">User Image url</label>
                         <input class="h-8 focus:outline-none font-semibold" id="user-img" type="url">
                     </div>
                 </div>
@@ -92,10 +92,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="text-center border-b-2 hover:bg-slate-300 hover:cursor-pointer">
+                    <!-- <tr class="text-center border-b-2 hover:bg-slate-300 hover:cursor-pointer">
                         <td class="py-5">1</td>
                         <td class="flex justify-center">
-                            <img class="py-5" src="./Images/favicon-user.png" width="25" alt="pic">
+                            <img class="py-5" src="./Images/favicon-user.png" width="30" alt="pic">
                         </td>
                         <td>Najmiddin</td>
                         <td>
@@ -110,13 +110,13 @@
                             <button class="text-blue-600">update</button>
                             <button class="text-red-600">delete</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </section>
 
         <center>
-            <button
+            <button id="add-user"
                 class="bg-purple-500 flex items-center gap-3 add-user ml-[-20] border-2 px-20 py-3 font-bold text-xl text-white rounded-full hover:bg-purple-700 transition-all duration-500">
                 Add User
                 <i class="fa-solid fa-plus"></i>
@@ -124,7 +124,11 @@
         </center>
     </div>
 
-    <script src="./JS/index.js"></script>
+    <div class="overlay hidden" id="overlay">
+
+    </div>
+
+    <script type="module" src="./JS/index.js"></script>
 </body>
 
 </html>
