@@ -1,9 +1,11 @@
-import { createUserRow } from "./functions.js";
+import { createUserRow, getData } from "./functions.js";
 
 // Button
 let addUserBtn = document.getElementById(`add-user`);
 let btnSave = document.getElementById('btn-save');
 let btnReset = document.getElementById('btn-reset');
+let updateBtn = document.querySelectorAll(`#update`);
+let deleteBtn = document.querySelectorAll(`#delete`);
 
 // Elements
 let form = document.querySelector(`#form`);
@@ -14,6 +16,10 @@ export let countID = 1;
 
 // inputs
 let inputs = document.querySelectorAll(`input`);
+let name = document.getElementById(`name`);
+let email = document.getElementById(`email`);
+let telNumber = document.getElementById(`tel-number`);
+let userImg = document.getElementById(`user-img`);
 
 
 // functions
@@ -41,8 +47,21 @@ overlay.addEventListener(`click`, function () {
 
 btnSave.addEventListener(`click`, function (e) {
     e.preventDefault();
-    tbody.innerHTML += createUserRow();
+
+    let user = {
+        name: name.value,
+        email: email.value,
+        telNumber: telNumber.value,
+        userImg: userImg.value,
+    }
+    
+    tbody.innerHTML += createUserRow(user);
     countID++;
+
+    let data = getData();
+    
+    data.push(user);
+    localStorage.setItem('users', JSON.stringify(data));
 
     addHiddenClass();
     form.reset();
@@ -73,4 +92,21 @@ inputs.forEach((input) => {
         currentInput.parentNode.style.borderBottomColor = `#3336e0`;
         countFocus++;
     })
+});
+
+
+deleteBtn.forEach((btn) => {
+    btn.addEventListener(`click`, function () {
+        console.log(`Delete`);
+    });
+})
+
+
+document.addEventListener(`DOMContentLoaded`, function () {
+    let data = getData();
+
+    data.forEach((user) => {
+        tbody.innerHTML += createUserRow(user);
+        countID++;
+    });
 });
