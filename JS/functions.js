@@ -2,7 +2,7 @@ import { countID } from "./index.js";
 
 function createUserRow(user) {
     return `
-    <tr class="text-center border-b-2 hover:bg-slate-300 hover:cursor-pointer">
+    <tr data-id="${user.userID}" class="text-center border-b-2 hover:bg-slate-300 hover:cursor-pointer">
         <td class="py-5">${countID}</td>
         <td class="flex justify-center">
             <img class="py-5" src="./Images/favicon-user.png" width="30" height="30" alt="pic">
@@ -17,8 +17,8 @@ function createUserRow(user) {
             </a>
         </td>
         <td>
-            <button id="update" class="text-blue-600">update</button>
-            <button id="delete" class="text-red-600">delete</button>
+            <button class="update text-blue-600">update</button>
+            <button class="delete text-red-600 ml-1">delete</button>
         </td>
     </tr>
     `
@@ -34,4 +34,4 @@ function getData() {
     return data;
 }
 
-export {createUserRow, getData};
+export { createUserRow, getData };

@@ -4,14 +4,15 @@ import { createUserRow, getData } from "./functions.js";
 let addUserBtn = document.getElementById(`add-user`);
 let btnSave = document.getElementById('btn-save');
 let btnReset = document.getElementById('btn-reset');
-let updateBtn = document.querySelectorAll(`#update`);
-let deleteBtn = document.querySelectorAll(`#delete`);
+let updateBtn = document.querySelectorAll(`.update`);
+
 
 // Elements
 let form = document.querySelector(`#form`);
 let tbody = document.querySelector(`tbody`);
 let formSection = document.querySelector(`.form-section`);
 let overlay = document.getElementById(`overlay`);
+let tr = document.querySelectorAll(`tr`);
 export let countID = 1;
 
 // inputs
@@ -48,23 +49,37 @@ overlay.addEventListener(`click`, function () {
 btnSave.addEventListener(`click`, function (e) {
     e.preventDefault();
 
+    // add users to UI and localStorage
     let user = {
         name: name.value,
         email: email.value,
         telNumber: telNumber.value,
         userImg: userImg.value,
+        userID: Date.now(),
     }
-    
+
     tbody.innerHTML += createUserRow(user);
     countID++;
 
     let data = getData();
-    
+
     data.push(user);
     localStorage.setItem('users', JSON.stringify(data));
 
     addHiddenClass();
     form.reset();
+
+
+    // click delete btn
+    let deleteBtn = document.querySelectorAll(`.delete`);
+
+    deleteBtn.forEach((btn) => {
+        btn.addEventListener(`click`, function () {
+            btn.parentNode.parentNode.remove();
+        });
+    })
+
+    // console.log(deleteBtn);
 });
 
 
@@ -95,13 +110,6 @@ inputs.forEach((input) => {
 });
 
 
-deleteBtn.forEach((btn) => {
-    btn.addEventListener(`click`, function () {
-        console.log(`Delete`);
-    });
-})
-
-
 document.addEventListener(`DOMContentLoaded`, function () {
     let data = getData();
 
@@ -109,4 +117,25 @@ document.addEventListener(`DOMContentLoaded`, function () {
         tbody.innerHTML += createUserRow(user);
         countID++;
     });
+
+    let deleteBtn = document.querySelectorAll(`.delete`);
+
+    deleteBtn.forEach((btn) => {
+        btn.addEventListener(`click`, function () {
+
+            let data = getData();
+            let id = btn.parentNode.parentNode.getAttribute(`data-id`);
+            let newdata = data.filter((user) => {
+                return user.userID != id;
+            });
+
+            localStorage.setItem('users', JSON.stringify(newdata));
+
+            let data2 = getData();
+            data2.forEach((user) => {
+                tbody.innerHTML += createUserRow(user);
+            });
+        });
+    })
 });
+
